@@ -1,76 +1,149 @@
+const { EventEmitter } = require('events');
+
 const fetch = require('node-fetch');
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+const MILLISEC = 1;
+const SECOND = 1000 * MILLISEC;
+const MINUTE = 60 * SECOND;
+const HOUR = 60 * SECOND;
+const DAY = 24 * HOUR;
+const WEEK = 7 * DAY;
+const MONTH = 30 * DAY;
+const YEAR = 365 * DAY;
+
 const EXAMPLE_GRAPH = {
+  'https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep': {
+    'https://www.google.co.uk/search?newwindow=1&source=hp&ei=cVDHXPOtF5HosAfKnJrgDw&q=javascript+sleep+await&oq=jav&gs_l=psy-ab.1.0.35i39l2j0i20i263j0j0i131j0j0i20i263j0i131j0j0i131.889.1455..2407...0.0..0.131.347.3j1......0....1..gws-wiz.....0.8oIEbZdX7Es': 0.2,
+    '%exit%': 0.8,
+  },
+  'https://news.ycombinator.com/': {
+    'https://news.ycombinator.com/news?p=2': 0.2,
+    '%exit%': 0.8,
+  },
+  'https://news.ycombinator.com/news?p=2': {
+    'https://news.ycombinator.com/news?p=3': 0.1,
+    '%exit%': 0.9,
+  },
+  'https://www.google.co.uk/search?newwindow=1&source=hp&ei=cVDHXPOtF5HosAfKnJrgDw&q=javascript+sleep+await&oq=jav&gs_l=psy-ab.1.0.35i39l2j0i20i263j0j0i131j0j0i20i263j0i131j0j0i131.889.1455..2407...0.0..0.131.347.3j1......0....1..gws-wiz.....0.8oIEbZdX7Es': {
+    'https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep': 0.8,
+    'https://flaviocopes.com/javascript-sleep/': 0.2,
+  },
   'https://github.com/': {
-    'https://github.com/': 0.8,
-    'https://github.com/search?utf8=%E2%9C%93&q=node&type=': 0.2,
+    'https://github.com/': 0.4,
+    'https://github.com/search?utf8=%E2%9C%93&q=node&type=': 0.5,
+    '%exit%': 0.1,
   },
   'https://www.w3schools.com/jsref/met_win_settimeout.asp': {
-    'https://www.w3schools.com/jsref/prop_win_opener.asp': 0.5,
+    'https://www.w3schools.com/jsref/prop_win_opener.asp': 0.1,
     'https://www.w3schools.com/jsref/prop_win_sessionstorage.asp': 0.2,
-    '%exit%': 0.3,
+    '%exit%': 0.7,
   },
   'https://github.com/search?utf8=%E2%9C%93&q=node&type=': {
-    'https://github.com/nodejs/node': 0.8,
-    '%exit%': 0.2,
+    'https://github.com/nodejs/node': 0.6,
+    '%exit%': 0.4,
   },
 };
 
-class TrafficSimulator {
+const DEFAULTS = {
+  delayRate: 1 * SECOND,
+  nameFunct: idx => `client #${idx}`,
+  minDepth: 2,
+  maxDepth: 20,
+  minTmOnPage: 1 * SECOND,
+  doLog: true,
+  maxTmOnPage: 30 * SECOND,
+  nClients: 50,
+};
+
+class TrafficSimulator extends EventEmitter {
   /**
-   * @param {Object<string,Object<string,!number>>} graph
-   * @param {?Float64Array} [ps]
+   * @param {Object<!String,Object<!String,!Number>>} graph
+   * @param {{minDepth: !Number, maxDepth: !Number, nClients: !Number, unit: !Number, ps: !ArrayLike<!Number>}} [opts]
    */
-  constructor(graph = EXAMPLE_GRAPH, ps = null) {
-    if (ps === null) {
-      const n = Object.keys(graph).length;
-      this.ps = new Float64Array(new ArrayBuffer(8 * n)).map(() => 1 / n);
-    } else {
-      this.ps = new Float64Array(new ArrayBuffer(8 * n)).map((_, idx) => ps[idx]);
-    }
+  constructor(graph = EXAMPLE_GRAPH, opts = {}) {
+    super();
+    Object.assign(this, DEFAULTS);
+    Object.assign(this, opts);
     this.urls = Object.keys(graph);
     this.graph = graph;
+    this.ps = new Float64Array(new ArrayBuffer(8 * this.urls.length));
+
+    // default to uniform probability for urls
+    if (opts.ps === undefined) {
+      for (let i = 0; i < this.ps.length; i++) {
+        this.ps[i] = 1 / this.urls.length;
+      }
+    } else {
+      for (let i = 0; i < this.ps.length; i++) {
+        this.ps[i] = opts.ps[i];
+      }
+    }
+    if (this.doLog === true) {
+      const fmtDate = date => date.constructor.name === 'Date' ? `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}:${date.getMilliseconds()}` : fmtDate(new Date(date));
+      console.warn('registering logging');
+      // this.on('randURL', url => console.log(`selected random URL ${url}`));
+      this.on('depth', name => console.log(`${name} done`));
+      this.on('exit', name => console.log(`${name} done`));
+      this.on('null', name => console.log(`${name} done`));
+      this.on('req', (name, url, startTm, endTm, tookTm) => console.log(`${name} ${fmtDate(startTm)} GET ${url} (took ${tookTm}ms)`));
+      this.on('spent', (name, url, spentTm) => console.log(`${name} spent ${Math.round(spentTm / SECOND)}sec on ${url}`));
+      this.on('spawn', (cfg, date) => console.log(`${cfg.name} spawned at ${fmtDate(date)}`));
+    }
   }
 
   /**
-   * @returns {!string} random URL
+   * @returns {!String} random URL
    */
   get randSite() {
-    return this.urls[Math.floor(Math.random() * this.urls.length)];
+    const url = this.urls[Math.floor(Math.random() * this.urls.length)];
+    this.emit('randURL', url);
+    return url;
   }
 
   /**
-   * @param {{s0: !string, depth: !number, name: !string}} cfg
+   * @param {{url: !String, depth: !Number, name: !String}} cfg
    */
-  async client({ s0, depth, name }) {
+  async client({ url, depth, name }) {
     if (depth <= 0) {
-      console.log(`${name} finished`);
+      this.emit('depth', name);
       return;
-    } else if (s0 === '%exit%') {
-      console.log(`${name} reached exit`);
+    } else if (url === '%exit%') {
+      this.emit('exit', name);
       return;
-    } else if (s0 === null) {
-      console.log(`${name} reached null`);
+    } else if (url === null) {
+      this.emit('null', name);
       return;
     }
     try {
-      console.log(`${name} requesting from "${s0}"`);
       const startTm = Date.now();
-      await fetch(s0);
-      console.log(`${name} received from "${s0}" (took ${Date.now() - startTm}ms)`);
+      await fetch(url);
+      const endTm = Date.now();
+      this.emit('req', name, url, startTm, endTm, endTm - startTm);
     } catch (e) {
-      console.log(e.message);
+      console.error(e.message);
     }
+
+    const spentTm = this.minTmOnPage + Math.random() * (this.maxTmOnPage - this.minTmOnPage);
+
+    // spend some time on the page
+    await sleep(spentTm);
+
+    this.emit('spent', name, url, spentTm);
+
     return this.client({
       name,
       depth: depth - 1,
-      s0: this.sample(s0),
+      url: this.sample(url),
     });
   }
 
   /**
-   * @param {?string} s URL (state)
-   * @returns {?string} URL
+   * @param {?String} s URL (state)
+   * @returns {?String} URL
    */
   sample(s) {
     if (this.graph[s] === undefined) {
@@ -96,25 +169,18 @@ class TrafficSimulator {
     return null;
   }
 
-  /**
-   * @param {!Number} [nClients]
-   * @param {!Number} [rate]
-   * @param {!Number} [minDepth]
-   * @param {!Number} [maxDepth]
-   */
-  simulate(nClients = 50, rate = 100, minDepth = 2, maxDepth = 10) {
+  simulate() {
     let t = 0;
-    for (let i = 0; i < nClients; i++) {
-      t += -Math.log(Math.random()) * rate;
+    for (let i = 0; i < this.nClients; i++) {
+      t += -Math.log(Math.random()) * this.delayRate;
       setTimeout(() => {
-        const name = `client #${i}`;
-        const d = new Date();
-        console.log(`${name} spawned at ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}:${d.getMilliseconds()}`);
-        this.client({
-          depth: minDepth + Math.floor(Math.random() * (maxDepth - minDepth)),
-          name,
-          s0: this.randSite,
-        });
+        const cfg = {
+          depth: this.minDepth + Math.floor(Math.random() * (this.maxDepth - this.minDepth)),
+          name: this.nameFunct(i),
+          url: this.randSite,
+        };
+        this.emit('spawn', cfg, new Date());
+        this.client(cfg);
       }, t);
     }
   }

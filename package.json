@@ -1,0 +1,21 @@
+{
+  "author": "Norbert Logiewa <norbertlogiewa96@gmail.com>",
+  "dependencies": {
+    "node-fetch": "^2.4.1"
+  },
+  "description": "Test your HTTP server by generating mock traffic",
+  "keywords": [
+    "markov-chain",
+    "continuous-markov-chain",
+    "http",
+    "server",
+    "load-test"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "traffic-simulator",
+  "scripts": {
+    "test": "jest"
+  },
+  "version": "0.1.0"
+}
