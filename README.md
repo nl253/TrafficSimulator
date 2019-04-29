@@ -1,9 +1,11 @@
 # Traffic Simulator 
 
+## API
+
 ```js
 const TrafficSimulator = require('traffic-simulator');
 
-// adjacancy list (floats are PROBABILITIES, they MUST add up to 1.0)
+// adjacency list (floats are PROBABILITIES, they MUST add up to 1.0)
 const EXAMPLE_GRAPH = {
   'https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep': {
     'https://www.google.co.uk/search?newwindow=1&source=hp&ei=cVDHXPOtF5HosAfKnJrgDw&q=javascript+sleep+await&oq=jav&gs_l=psy-ab.1.0.35i39l2j0i20i263j0j0i131j0j0i20i263j0i131j0j0i131.889.1455..2407...0.0..0.131.347.3j1......0....1..gws-wiz.....0.8oIEbZdX7Es': 0.2,
@@ -52,7 +54,7 @@ const opts = {
   nClients: 50,
 };
 
-const ts = new TrafficSimulator(graph, opts);
+const ts = new TrafficSimulator(EXAMPLE_GRAPH, opts);
 
 ts.simulate();
 ```

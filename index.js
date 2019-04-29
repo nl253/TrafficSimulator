@@ -2,18 +2,17 @@ const { EventEmitter } = require('events');
 
 const fetch = require('node-fetch');
 
+/**
+ * @param {!Number} ms
+ * @returns {Promise<*>}
+ * @private
+ */
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 const MILLISEC = 1;
 const SECOND = 1000 * MILLISEC;
-const MINUTE = 60 * SECOND;
-const HOUR = 60 * SECOND;
-const DAY = 24 * HOUR;
-const WEEK = 7 * DAY;
-const MONTH = 30 * DAY;
-const YEAR = 365 * DAY;
 
 const EXAMPLE_GRAPH = {
   'https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep': {
@@ -48,6 +47,7 @@ const EXAMPLE_GRAPH = {
   },
 };
 
+// noinspection PointlessArithmeticExpressionJS
 const DEFAULTS = {
   delayRate: 1 * SECOND,
   nameFunct: idx => `client #${idx}`,
@@ -97,6 +97,7 @@ class TrafficSimulator extends EventEmitter {
 
   /**
    * @returns {!String} random URL
+   * @private
    */
   get randSite() {
     const url = this.urls[Math.floor(Math.random() * this.urls.length)];
@@ -106,6 +107,7 @@ class TrafficSimulator extends EventEmitter {
 
   /**
    * @param {{url: !String, depth: !Number, name: !String}} cfg
+   * @private
    */
   async client({ url, depth, name }) {
     if (depth <= 0) {
@@ -144,6 +146,7 @@ class TrafficSimulator extends EventEmitter {
   /**
    * @param {?String} s URL (state)
    * @returns {?String} URL
+   * @private
    */
   sample(s) {
     if (this.graph[s] === undefined) {
@@ -152,17 +155,17 @@ class TrafficSimulator extends EventEmitter {
     const neighs = Object
       .entries(this.graph[s])
       .sort((n1, n2) => (n1[1] > n2[1] ? -1 : 1));
-    const cumsums = new Float64Array(new ArrayBuffer(neighs.length * 8));
-    for (let i = 0; i < cumsums.length; i++) {
+    const cumSums = new Float64Array(new ArrayBuffer(neighs.length * 8));
+    for (let i = 0; i < cumSums.length; i++) {
       let total = 0;
       for (let j = 0; j <= i; j++) {
         total += neighs[j][1];
       }
-      cumsums[i] = total;
+      cumSums[i] = total;
     }
     const r = Math.random();
-    for (let i = 1; i < cumsums.length; i++) {
-      if (r >= cumsums[i - 1] && r < cumsums[i]) {
+    for (let i = 1; i < cumSums.length; i++) {
+      if (r >= cumSums[i - 1] && r < cumSums[i]) {
         return neighs[i - 1][0];
       }
     }

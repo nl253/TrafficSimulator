@@ -1,5 +1,10 @@
 {
   "author": "Norbert Logiewa <norbertlogiewa96@gmail.com>",
+  "readme": "README.md",
+  "bugs": {
+    "url": "https://github.com/nl253/TrafficSimulator-JS/issues",
+    "email": "norbertlogiewa96@gmail.com"
+  },
   "dependencies": {
     "node-fetch": "^2.4.1"
   },
@@ -14,8 +19,21 @@
   "license": "MIT",
   "main": "index.js",
   "name": "traffic-simulator",
+  "private": false,
+  "homepage": "https://github.com/nl253/TrafficSimulator-JS",
+  "repository": {
+    "url": "https://github.com/nl253/TrafficSimulator-JS",
+    "type": "git"
+  },
+  "engines": {
+    "node": ">=10.15.1"
+  },
+  "files": [
+    "index.js",
+    "README.md"
+  ],
   "scripts": {
     "test": "jest"
   },
-  "version": "0.1.0"
+  "version": "0.2.0"
 }
