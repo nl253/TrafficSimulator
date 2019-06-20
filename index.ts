@@ -1,20 +1,17 @@
-const { EventEmitter } = require('events');
+import { EventEmitter } from 'events';
+import * as fetch from 'node-fetch';
 
-const fetch = require('node-fetch');
+interface DictStr<V> {
+  [idx: string]: V;
+}
 
-/**
- * @param {!Number} ms
- * @returns {Promise<*>}
- * @private
- */
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+interface Graph {
+  [idx: string]: DictStr<number>;
 }
 
 const MILLISEC = 1;
 const SECOND = 1000 * MILLISEC;
-
-const EXAMPLE_GRAPH = {
+const EXAMPLE_GRAPH: Graph = {
   'https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep': {
     'https://www.google.co.uk/search?newwindow=1&source=hp&ei=cVDHXPOtF5HosAfKnJrgDw&q=javascript+sleep+await&oq=jav&gs_l=psy-ab.1.0.35i39l2j0i20i263j0j0i131j0j0i20i263j0i131j0j0i131.889.1455..2407...0.0..0.131.347.3j1......0....1..gws-wiz.....0.8oIEbZdX7Es': 0.2,
     '%exit%': 0.8,
@@ -47,30 +44,44 @@ const EXAMPLE_GRAPH = {
   },
 };
 
-// noinspection PointlessArithmeticExpressionJS
-const DEFAULTS = {
-  delayRate: 1 * SECOND,
-  nameFunct: idx => `client #${idx}`,
-  minDepth: 2,
-  maxDepth: 20,
-  minTmOnPage: 1 * SECOND,
-  doLog: true,
-  maxTmOnPage: 30 * SECOND,
-  nClients: 50,
+type UserOpts = {
+  ps?: Array<number> | Float64Array | Float32Array,
+  delayRate?: number,
+  minTmOnPage?: number,
+  maxTmOnPage?: number,
+  maxDepth?: number,
+  minDepth?: number,
+  rate?: number,
+  unit?: number,
+  nameFunct?: (idx: number) => string,
+  log?: (s: string) => void,
+  warn?: (s: string) => void,
 };
 
 class TrafficSimulator extends EventEmitter {
-  /**
-   * @param {Object<!String,Object<!String,!Number>>} graph
-   * @param {{minDepth: !Number, maxDepth: !Number, nClients: !Number, unit: !Number, ps: !ArrayLike<!Number>}} [opts]
-   */
-  constructor(graph = EXAMPLE_GRAPH, opts = {}) {
+  public readonly urls: Array<string>;
+  public readonly graph: object;
+  public readonly ps: Float64Array;
+  public readonly delayRate: number;
+
+  public readonly minTmOnPage: number =   3 * SECOND;
+  public readonly maxTmOnPage: number = 120 * SECOND;
+  public readonly maxDepth: number    =           20;
+  public readonly minDepth: number    =            2;
+  public readonly rate: number        =            3;
+  public readonly unit: number        =       SECOND;
+  public readonly doLog: boolean      =         true; 
+
+  public readonly nameFunct: (idx: number) => string = idx => `client #${idx}`;
+  public readonly log: (s: string) => void           = console.log;
+  public readonly warn: (s: string) => void          = console.warn;
+
+  public constructor(graph: Graph = EXAMPLE_GRAPH as Graph, opts: UserOpts = {}) {
     super();
-    Object.assign(this, DEFAULTS);
     Object.assign(this, opts);
-    this.urls = Object.keys(graph);
+    this.urls  = Object.keys(graph);
     this.graph = graph;
-    this.ps = new Float64Array(new ArrayBuffer(8 * this.urls.length));
+    this.ps    = new Float64Array(new ArrayBuffer(8 * this.urls.length));
 
     // default to uniform probability for urls
     if (opts.ps === undefined) {
@@ -84,32 +95,24 @@ class TrafficSimulator extends EventEmitter {
     }
     if (this.doLog === true) {
       const fmtDate = date => date.constructor.name === 'Date' ? `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}:${date.getMilliseconds()}` : fmtDate(new Date(date));
-      console.warn('registering logging');
+      this.warn('registering logging');
       // this.on('randURL', url => console.log(`selected random URL ${url}`));
-      this.on('depth', name => console.log(`${name} done`));
-      this.on('exit', name => console.log(`${name} done`));
-      this.on('null', name => console.log(`${name} done`));
-      this.on('req', (name, url, startTm, endTm, tookTm) => console.log(`${name} ${fmtDate(startTm)} GET ${url} (took ${tookTm}ms)`));
-      this.on('spent', (name, url, spentTm) => console.log(`${name} spent ${Math.round(spentTm / SECOND)}sec on ${url}`));
-      this.on('spawn', (cfg, date) => console.log(`${cfg.name} spawned at ${fmtDate(date)}`));
+      this.on('depth', name => this.log(`${name} done`));
+      this.on('exit', name => this.log(`${name} done`));
+      this.on('null', name => this.log(`${name} done`));
+      this.on('req', (name, url, startTm, endTm, tookTm) => this.log(`${name} ${fmtDate(startTm)} GET ${url} (took ${tookTm}ms)`));
+      this.on('spent', (name, url, spentTm) => this.log(`${name} spent ${Math.round(spentTm / SECOND)}sec on ${url}`));
+      this.on('spawn', (cfg, date) => this.log(`${cfg.name} spawned at ${fmtDate(date)}`));
     }
   }
 
-  /**
-   * @returns {!String} random URL
-   * @private
-   */
-  get randSite() {
+  private get randURL(): string {
     const url = this.urls[Math.floor(Math.random() * this.urls.length)];
     this.emit('randURL', url);
     return url;
   }
 
-  /**
-   * @param {{url: !String, depth: !Number, name: !String}} cfg
-   * @private
-   */
-  async client({ url, depth, name }) {
+  private async client({ url, depth, name }: { url: string, depth: number, name: string }): void {
     if (depth <= 0) {
       this.emit('depth', name);
       return;
@@ -132,7 +135,7 @@ class TrafficSimulator extends EventEmitter {
     const spentTm = this.minTmOnPage + Math.random() * (this.maxTmOnPage - this.minTmOnPage);
 
     // spend some time on the page
-    await sleep(spentTm);
+    await ((ms => new Promise(res => setTimeout(res, ms)))(spentTm));
 
     this.emit('spent', name, url, spentTm);
 
@@ -143,18 +146,12 @@ class TrafficSimulator extends EventEmitter {
     });
   }
 
-  /**
-   * @param {?String} s URL (state)
-   * @returns {?String} URL
-   * @private
-   */
-  sample(s) {
+  private sample(s: string): string {
     if (this.graph[s] === undefined) {
       return null;
     }
-    const neighs = Object
-      .entries(this.graph[s])
-      .sort((n1, n2) => (n1[1] > n2[1] ? -1 : 1));
+    const neighs = Object.entries(this.graph[s])
+                         .sort((n1, n2) => (n1[1] > n2[1] ? -1 : 1));
     const cumSums = new Float64Array(new ArrayBuffer(neighs.length * 8));
     for (let i = 0; i < cumSums.length; i++) {
       let total = 0;
@@ -172,7 +169,7 @@ class TrafficSimulator extends EventEmitter {
     return null;
   }
 
-  simulate() {
+  public simulate(): void {
     let t = 0;
     for (let i = 0; i < this.nClients; i++) {
       t += -Math.log(Math.random()) * this.delayRate;
@@ -180,7 +177,7 @@ class TrafficSimulator extends EventEmitter {
         const cfg = {
           depth: this.minDepth + Math.floor(Math.random() * (this.maxDepth - this.minDepth)),
           name: this.nameFunct(i),
-          url: this.randSite,
+          url: this.randURL,
         };
         this.emit('spawn', cfg, new Date());
         this.client(cfg);
