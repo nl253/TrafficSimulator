@@ -1,17 +1,17 @@
 import { EventEmitter } from 'events';
-import * as fetch from 'node-fetch';
+import fetch from 'node-fetch';
 
-interface DictStr<V> {
+export interface DictStr<V> {
   [idx: string]: V;
 }
 
-interface Graph {
+export interface Graph {
   [idx: string]: DictStr<number>;
 }
 
-const MILLISEC = 1;
-const SECOND = 1000 * MILLISEC;
-const EXAMPLE_GRAPH: Graph = {
+export const MILLISEC = 1;
+export const SECOND   = 1000 * MILLISEC;
+export const EXAMPLE_GRAPH: Graph = {
   'https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep': {
     'https://www.google.co.uk/search?newwindow=1&source=hp&ei=cVDHXPOtF5HosAfKnJrgDw&q=javascript+sleep+await&oq=jav&gs_l=psy-ab.1.0.35i39l2j0i20i263j0j0i131j0j0i20i263j0i131j0j0i131.889.1455..2407...0.0..0.131.347.3j1......0....1..gws-wiz.....0.8oIEbZdX7Es': 0.2,
     '%exit%': 0.8,
@@ -44,37 +44,33 @@ const EXAMPLE_GRAPH: Graph = {
   },
 };
 
-type UserOpts = {
-  ps?: Array<number> | Float64Array | Float32Array,
-  delayRate?: number,
+export type UserOpts = {
+  ps?:          Array<number> | Float64Array | Float32Array,
+  delayRate?:   number,
   minTmOnPage?: number,
   maxTmOnPage?: number,
-  maxDepth?: number,
-  minDepth?: number,
-  rate?: number,
-  unit?: number,
-  nameFunct?: (idx: number) => string,
-  log?: (s: string) => void,
-  warn?: (s: string) => void,
+  maxDepth?:    number,
+  minDepth?:    number,
+  rate?:        number,
+  unit?:        number,
 };
 
-class TrafficSimulator extends EventEmitter {
-  public readonly urls: Array<string>;
-  public readonly graph: object;
-  public readonly ps: Float64Array;
-  public readonly delayRate: number;
+export interface Printable {
+  toString(): string;
+}
 
-  public readonly minTmOnPage: number =   3 * SECOND;
-  public readonly maxTmOnPage: number = 120 * SECOND;
-  public readonly maxDepth: number    =           20;
-  public readonly minDepth: number    =            2;
-  public readonly rate: number        =            3;
-  public readonly unit: number        =       SECOND;
-  public readonly doLog: boolean      =         true; 
+export class TrafficSimulator extends EventEmitter {
+  public readonly urls:      Array<string>;
+  public readonly graph:     Graph;
+  public readonly ps:        Float64Array;
 
-  public readonly nameFunct: (idx: number) => string = idx => `client #${idx}`;
-  public readonly log: (s: string) => void           = console.log;
-  public readonly warn: (s: string) => void          = console.warn;
+  public readonly nClients:    number  =           10;
+  public readonly delayRate:   number  =   1 * SECOND;
+  public readonly minTmOnPage: number  =   3 * SECOND;
+  public readonly maxTmOnPage: number  = 120 * SECOND;
+  public readonly maxDepth:    number  =           20;
+  public readonly minDepth:    number  =            2;
+  public readonly doLog:       boolean =         true;
 
   public constructor(graph: Graph = EXAMPLE_GRAPH as Graph, opts: UserOpts = {}) {
     super();
@@ -93,8 +89,8 @@ class TrafficSimulator extends EventEmitter {
         this.ps[i] = opts.ps[i];
       }
     }
-    if (this.doLog === true) {
-      const fmtDate = date => date.constructor.name === 'Date' ? `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}:${date.getMilliseconds()}` : fmtDate(new Date(date));
+    if (this.doLog) {
+      const fmtDate: (date: Date) => string = date => date.constructor.name === 'Date' ? `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}:${date.getMilliseconds()}` : fmtDate(new Date(date));
       this.warn('registering logging');
       // this.on('randURL', url => console.log(`selected random URL ${url}`));
       this.on('depth', name => this.log(`${name} done`));
@@ -106,13 +102,17 @@ class TrafficSimulator extends EventEmitter {
     }
   }
 
-  private get randURL(): string {
-    const url = this.urls[Math.floor(Math.random() * this.urls.length)];
-    this.emit('randURL', url);
-    return url;
-  }
 
-  private async client({ url, depth, name }: { url: string, depth: number, name: string }): void {
+  // noinspection JSMethodCanBeStatic
+  protected log(msg: Printable): void { return console.log(msg); }
+
+  // noinspection JSMethodCanBeStatic
+  protected warn(msg: Printable): void { return console.warn(msg); }
+
+  // noinspection JSMethodCanBeStatic
+  protected nameFunct(idx: number): string { return `client #${idx}`; }
+
+  protected async clientWorker({ url, depth, name }: { url: string | null, depth: number, name: string }): Promise<void> {
     if (depth <= 0) {
       this.emit('depth', name);
       return;
@@ -125,33 +125,34 @@ class TrafficSimulator extends EventEmitter {
     }
     try {
       const startTm = Date.now();
-      await fetch(url);
+      await fetch(<string>url);
       const endTm = Date.now();
       this.emit('req', name, url, startTm, endTm, endTm - startTm);
     } catch (e) {
       console.error(e.message);
     }
 
-    const spentTm = this.minTmOnPage + Math.random() * (this.maxTmOnPage - this.minTmOnPage);
+    const spentTm = this.randTmOnPg;
 
     // spend some time on the page
     await ((ms => new Promise(res => setTimeout(res, ms)))(spentTm));
 
     this.emit('spent', name, url, spentTm);
 
-    return this.client({
+    return this.clientWorker({
       name,
       depth: depth - 1,
-      url: this.sample(url),
+      url: this.sample(<string>url),
     });
   }
 
-  private sample(s: string): string {
+  protected sample(s: string): string | null {
     if (this.graph[s] === undefined) {
       return null;
     }
-    const neighs = Object.entries(this.graph[s])
-                         .sort((n1, n2) => (n1[1] > n2[1] ? -1 : 1));
+    const neighs: Array<[string, number]>
+              = Object.entries(<DictStr<number>>this.graph[s])
+                      .sort((n1: [string, number], n2: [string, number]) => (n1[1] > n2[1] ? -1 : 1));
     const cumSums = new Float64Array(new ArrayBuffer(neighs.length * 8));
     for (let i = 0; i < cumSums.length; i++) {
       let total = 0;
@@ -169,21 +170,32 @@ class TrafficSimulator extends EventEmitter {
     return null;
   }
 
+  protected get randURL(): string {
+    const url = this.urls[Math.floor(Math.random() * this.urls.length)];
+    this.emit('randURL', url);
+    return url;
+  }
+
+  protected get randDepth(): number { return TrafficSimulator.randUniform(this.minDepth, this.maxDepth); }
+
+  protected get randTmOnPg(): number { return TrafficSimulator.randUniform(this.minTmOnPage, this.maxTmOnPage); }
+
+  private static randUniform(min: number, max: number): number { return min + Math.random() * (max - min); }
+
   public simulate(): void {
     let t = 0;
     for (let i = 0; i < this.nClients; i++) {
       t += -Math.log(Math.random()) * this.delayRate;
       setTimeout(() => {
         const cfg = {
-          depth: this.minDepth + Math.floor(Math.random() * (this.maxDepth - this.minDepth)),
+          depth: this.randDepth,
           name: this.nameFunct(i),
           url: this.randURL,
         };
         this.emit('spawn', cfg, new Date());
-        this.client(cfg);
+        // noinspection JSIgnoredPromiseFromCall
+        this.clientWorker(cfg);
       }, t);
     }
   }
 }
-
-module.exports = TrafficSimulator;

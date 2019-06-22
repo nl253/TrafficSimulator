@@ -1,46 +1,7 @@
-# Traffic Simulator 
+import { TrafficSimulator, SECOND } from '../index';
 
-## API
-
-### Basics
-
-```js
-const { TrafficSimulator, SECOND } = require('traffic-simulator');
-const graph = { /* see below */ };
-
-// defaults
-const opts = {
-  delayRate: 1 * SECOND,
-  minDepth: 2,
-  maxDepth: 20,
-  minTmOnPage: 1 * SECOND,
-  maxTmOnPage: 30 * SECOND,
-  nClients: 50,
-  doLog: true,
-};
-
-const ts = new TrafficSimulator(graph, opts);
-ts.simulate();
-```
-
-### EventEmitter API
-
-The following events are emitted along with the data specified in parenthesis.
-
-- randURL(url: string)
-- depth(workerName: string)
-- exit(workerName: string)
-- null(workerName: string)
-- spent(workerName: string, url: string, timeSpent: number)
-- spawn({ workerName: string, url: string, depth: number }, atTime: Date)
-
-### Link Graph
-
-For a complete example see `examples/simple.ts`.
-
-```javascript
 // adjacency list (floats are PROBABILITIES, they MUST add up to 1.0)
-const EXAMPLE_GRAPH = {
+const graph = {
   'https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep': {
     'https://www.google.co.uk/search?newwindow=1&source=hp&ei=cVDHXPOtF5HosAfKnJrgDw&q=javascript+sleep+await&oq=jav&gs_l=psy-ab.1.0.35i39l2j0i20i263j0j0i131j0j0i20i263j0i131j0j0i131.889.1455..2407...0.0..0.131.347.3j1......0....1..gws-wiz.....0.8oIEbZdX7Es': 0.2,
     '%exit%': 0.8,
@@ -72,5 +33,12 @@ const EXAMPLE_GRAPH = {
     '%exit%': 0.4,
   },
 };
-```
 
+const opts = {
+  minTmOnPage:  1 * SECOND,
+  maxTmOnPage: 30 * SECOND,
+  nClients:             50,
+};
+
+const ts = new TrafficSimulator(graph, opts);
+ts.simulate();
