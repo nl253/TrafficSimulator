@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf923392-dfe5-4466-9c2d-09b6b5014f07" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -15,14 +15,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="126" column="12" selection-start-line="126" selection-start-column="12" selection-end-line="126" selection-end-column="12" />
+            <state relative-caret-position="315">
+              <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
               <folding>
-                <element signature="e#291#1816#0" expanded="true" />
-                <element signature="e#381#670#0" expanded="true" />
                 <element signature="e#707#781#0" expanded="true" />
                 <element signature="e#826#900#0" expanded="true" />
                 <element signature="e#1160#1314#0" expanded="true" />
@@ -30,6 +28,7 @@
                 <element signature="e#1525#1685#0" expanded="true" />
                 <element signature="e#1746#1813#0" expanded="true" />
                 <element signature="n#!!block;n#constructor#0;n#TrafficSimulator#0" expanded="true" />
+                <element signature="n#!!block;n#clientWorker#0;n#TrafficSimulator#0" expanded="true" />
                 <element signature="e#5249#5329#0" expanded="true" />
                 <element signature="n#!!block;n#sample#0;n#TrafficSimulator#0" expanded="true" />
                 <element signature="n#!!block;n#randURL#0;n#TrafficSimulator#0" expanded="true" />
@@ -78,15 +77,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
               <first_editor relative-caret-position="486">
-                <caret line="107" selection-start-line="107" selection-end-line="107" />
+                <caret line="115" selection-start-line="115" selection-end-line="115" />
                 <folding>
                   <element signature="e#127#272#0" expanded="true" />
                   <element signature="e#71#352#0" expanded="true" />
+                  <element signature="n#!!doc" expanded="true" />
+                  <element signature="n#!!doc" expanded="true" />
+                  <element signature="n#!!doc" expanded="true" />
+                  <element signature="n#!!doc" expanded="true" />
+                  <element signature="n#!!doc" expanded="true" />
                   <element signature="e#92#1617#0" expanded="true" />
                   <element signature="e#182#471#0" expanded="true" />
                   <element signature="e#508#582#0" expanded="true" />
@@ -131,8 +135,8 @@
         <option value="$PROJECT_DIR$/tsconfig.json" />
         <option value="$PROJECT_DIR$/index.ts" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -364,6 +368,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="49" column="22" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding>
+            <element signature="e#707#781#0" expanded="true" />
+            <element signature="e#826#900#0" expanded="true" />
+            <element signature="e#1160#1314#0" expanded="true" />
+            <element signature="e#1341#1463#0" expanded="true" />
+            <element signature="e#1525#1685#0" expanded="true" />
+            <element signature="e#1746#1813#0" expanded="true" />
+            <element signature="n#!!block;n#constructor#0;n#TrafficSimulator#0" expanded="true" />
+            <element signature="n#!!block;n#clientWorker#0;n#TrafficSimulator#0" expanded="true" />
+            <element signature="e#5249#5329#0" expanded="true" />
+            <element signature="n#!!block;n#sample#0;n#TrafficSimulator#0" expanded="true" />
+            <element signature="n#!!block;n#randURL#0;n#TrafficSimulator#0" expanded="true" />
+            <element signature="e#6762#7027#0" expanded="true" />
+            <element signature="e#6784#6892#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
@@ -400,10 +433,15 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
           <first_editor relative-caret-position="486">
-            <caret line="107" selection-start-line="107" selection-end-line="107" />
+            <caret line="115" selection-start-line="115" selection-end-line="115" />
             <folding>
               <element signature="e#127#272#0" expanded="true" />
               <element signature="e#71#352#0" expanded="true" />
+              <element signature="n#!!doc" expanded="true" />
+              <element signature="n#!!doc" expanded="true" />
+              <element signature="n#!!doc" expanded="true" />
+              <element signature="n#!!doc" expanded="true" />
+              <element signature="n#!!doc" expanded="true" />
               <element signature="e#92#1617#0" expanded="true" />
               <element signature="e#182#471#0" expanded="true" />
               <element signature="e#508#582#0" expanded="true" />
@@ -415,36 +453,6 @@
             </folding>
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="49" column="22" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="126" column="12" selection-start-line="126" selection-start-column="12" selection-end-line="126" selection-end-column="12" />
-          <folding>
-            <element signature="e#291#1816#0" expanded="true" />
-            <element signature="e#381#670#0" expanded="true" />
-            <element signature="e#707#781#0" expanded="true" />
-            <element signature="e#826#900#0" expanded="true" />
-            <element signature="e#1160#1314#0" expanded="true" />
-            <element signature="e#1341#1463#0" expanded="true" />
-            <element signature="e#1525#1685#0" expanded="true" />
-            <element signature="e#1746#1813#0" expanded="true" />
-            <element signature="n#!!block;n#constructor#0;n#TrafficSimulator#0" expanded="true" />
-            <element signature="e#5249#5329#0" expanded="true" />
-            <element signature="n#!!block;n#sample#0;n#TrafficSimulator#0" expanded="true" />
-            <element signature="n#!!block;n#randURL#0;n#TrafficSimulator#0" expanded="true" />
-            <element signature="e#6762#7027#0" expanded="true" />
-            <element signature="e#6784#6892#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
