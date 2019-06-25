@@ -47,12 +47,14 @@
   },
   "files": [
     "index.js",
+    "examples/simple.ts",
     "README.md"
   ],
   "scripts": {
     "build": "npx tsc -p .",
     "watch": "npx tsc -p . --watch",
     "prepublishOnly": "npm run build",
+    "postinstall": "node -e \"console.log('[WARN] this is a node module (it won't workin in a browser)')\"",
     "test": "jest"
   },
   "version": "0.3.0"

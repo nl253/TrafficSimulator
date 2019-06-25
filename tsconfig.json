@@ -5,7 +5,6 @@
   ],
   "compilerOptions": {
     "baseUrl": ".",
-    "module": "umd",
     "target": "es5",
     "types": [
       "node",
@@ -24,7 +23,7 @@
     "outDir": ".",
     "pretty": true,
     "watch": false,
-    "listFiles": true,
+    "listFiles": false,
     "lib": [
       "es5",
       "es6",

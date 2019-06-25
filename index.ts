@@ -45,14 +45,14 @@ export const EXAMPLE_GRAPH: Graph = {
 };
 
 export type UserOpts = {
-  ps?:          Array<number> | Float64Array | Float32Array,
+  nClients?:    number,
   delayRate?:   number,
   minTmOnPage?: number,
   maxTmOnPage?: number,
   maxDepth?:    number,
   minDepth?:    number,
-  rate?:        number,
-  unit?:        number,
+  doLog?:       boolean,
+  ps?: Array<number> | Float64Array | Float32Array,
 };
 
 export interface Printable {
@@ -101,7 +101,6 @@ export class TrafficSimulator extends EventEmitter {
       this.on('spawn', (cfg, date) => this.log(`${cfg.name} spawned at ${fmtDate(date)}`));
     }
   }
-
 
   // noinspection JSMethodCanBeStatic
   protected log(msg: Printable): void { return console.log(msg); }

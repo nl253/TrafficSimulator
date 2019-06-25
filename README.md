@@ -8,7 +8,6 @@
 const { TrafficSimulator, SECOND } = require('traffic-simulator');
 const graph = { /* see below */ };
 
-// defaults
 const opts = {
   delayRate: 1 * SECOND,
   minDepth: 2,
@@ -21,6 +20,36 @@ const opts = {
 
 const ts = new TrafficSimulator(graph, opts);
 ts.simulate();
+```
+
+### Default Options
+
+```javascript
+const MILLISEC = 1;
+const SECOND   = 1000 * MILLISEC;
+
+const DEFAULTS = {
+  nClients:              10,
+  delayRate:     1 * SECOND, // time between clients are spawned
+  minTmOnPage:   3 * SECOND,
+  maxTmOnPage: 120 * SECOND,
+  maxDepth:              20, // max #clicks that each client makes
+  minDepth:               2, 
+  doLog:               true,
+}
+```
+
+### Overridable Methods (via Inheritance)
+
+```typescript
+interface Printable { toString(): string; }
+
+protected get randURL(): string;
+protected get randDepth(): number;
+protected get randTmOnPg(): number;
+protected nameFunct(idx: number): string;
+protected warn(msg: Printable): void;
+protected log(msg: Printable): void;
 ```
 
 ### EventEmitter API
