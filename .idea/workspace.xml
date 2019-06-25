@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bf923392-dfe5-4466-9c2d-09b6b5014f07" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
-    </list>
+    <list default="true" id="bf923392-dfe5-4466-9c2d-09b6b5014f07" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -23,7 +16,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="21">
+              <caret line="46" selection-start-line="46" selection-end-line="46" />
               <folding>
                 <element signature="e#291#1816#0" expanded="true" />
                 <element signature="e#381#670#0" expanded="true" />
@@ -57,17 +51,15 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/examples/simple.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
+            <state relative-caret-position="259">
+              <caret line="32" column="4" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
               <folding>
-                <element signature="e#138#1663#0" expanded="true" />
                 <element signature="e#228#517#0" expanded="true" />
                 <element signature="e#554#628#0" expanded="true" />
                 <element signature="e#673#747#0" expanded="true" />
                 <element signature="e#1007#1161#0" expanded="true" />
                 <element signature="e#1188#1310#0" expanded="true" />
                 <element signature="e#1372#1532#0" expanded="true" />
-                <element signature="e#1593#1660#0" expanded="true" />
                 <element signature="e#1679#1766#0" expanded="true" />
               </folding>
             </state>
@@ -87,8 +79,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="84">
-                <caret line="4" selection-start-line="4" selection-end-line="4" />
+              <first_editor relative-caret-position="378">
+                <caret line="51" selection-start-line="51" selection-end-line="51" />
                 <folding>
                   <element signature="e#127#272#0" expanded="true" />
                   <element signature="e#71#352#0" expanded="true" />
@@ -102,8 +94,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="56" column="3" selection-start-line="56" selection-start-column="3" selection-end-line="56" selection-end-column="3" />
+            <state relative-caret-position="350">
+              <caret line="49" column="10" selection-start-line="49" selection-start-column="10" selection-end-line="49" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -363,7 +355,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="21">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
           <folding>
             <element signature="e#291#1816#0" expanded="true" />
             <element signature="e#381#670#0" expanded="true" />
@@ -393,17 +386,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/examples/simple.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        <state relative-caret-position="259">
+          <caret line="32" column="4" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
           <folding>
-            <element signature="e#138#1663#0" expanded="true" />
             <element signature="e#228#517#0" expanded="true" />
             <element signature="e#554#628#0" expanded="true" />
             <element signature="e#673#747#0" expanded="true" />
             <element signature="e#1007#1161#0" expanded="true" />
             <element signature="e#1188#1310#0" expanded="true" />
             <element signature="e#1372#1532#0" expanded="true" />
-            <element signature="e#1593#1660#0" expanded="true" />
             <element signature="e#1679#1766#0" expanded="true" />
           </folding>
         </state>
@@ -419,8 +410,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="84">
-            <caret line="4" selection-start-line="4" selection-end-line="4" />
+          <first_editor relative-caret-position="378">
+            <caret line="51" selection-start-line="51" selection-end-line="51" />
             <folding>
               <element signature="e#127#272#0" expanded="true" />
               <element signature="e#71#352#0" expanded="true" />
@@ -432,8 +423,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="56" column="3" selection-start-line="56" selection-start-column="3" selection-end-line="56" selection-end-column="3" />
+        <state relative-caret-position="350">
+          <caret line="49" column="10" selection-start-line="49" selection-start-column="10" selection-end-line="49" selection-end-column="10" />
         </state>
       </provider>
     </entry>
