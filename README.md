@@ -1,5 +1,8 @@
 # Traffic Simulator 
 
+- generate mock traffic
+- for now just GET requests
+
 ## API
 
 ### Basics
