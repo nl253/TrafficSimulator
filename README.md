@@ -54,6 +54,8 @@ protected get randTmOnPg(): number; // time on the current page after each trans
 protected nameFunct(idx: number): string; // name for new client workers
 protected warn(msg: Printable):   void;   // defaults to console.warn
 protected log(msg: Printable):    void;   // defaults to console.log
+
+// You will have access to all opts: this.nClients, this.delayRate ...
 ```
 
 ### EventEmitter API
