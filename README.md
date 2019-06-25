@@ -47,13 +47,13 @@ const DEFAULTS = {
 ```typescript
 interface Printable { toString(): string; }
 
-protected get randURL():    string;
-protected get randDepth():  number;
-protected get randTmOnPg(): number;
+protected get randURL():    string; // start URL when creating a new client worker
+protected get randDepth():  number; // length of new client worker tour
+protected get randTmOnPg(): number; // time on the current page after each transition
 
-protected nameFunct(idx: number): string;
-protected warn(msg: Printable):   void;
-protected log(msg: Printable):    void;
+protected nameFunct(idx: number): string; // name for new client workers
+protected warn(msg: Printable):   void;   // defaults to console.warn
+protected log(msg: Printable):    void;   // defaults to console.log
 ```
 
 ### EventEmitter API

@@ -18,9 +18,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+            <state>
+              <caret line="171" column="16" selection-start-line="171" selection-start-column="16" selection-end-line="171" selection-end-column="16" />
               <folding>
+                <element signature="e#291#1816#0" expanded="true" />
+                <element signature="e#381#670#0" expanded="true" />
                 <element signature="e#707#781#0" expanded="true" />
                 <element signature="e#826#900#0" expanded="true" />
                 <element signature="e#1160#1314#0" expanded="true" />
@@ -32,6 +34,7 @@
                 <element signature="e#5249#5329#0" expanded="true" />
                 <element signature="n#!!block;n#sample#0;n#TrafficSimulator#0" expanded="true" />
                 <element signature="n#!!block;n#randURL#0;n#TrafficSimulator#0" expanded="true" />
+                <element signature="n#!!block;n#simulate#0;n#TrafficSimulator#0" expanded="true" />
                 <element signature="e#6762#7027#0" expanded="true" />
                 <element signature="e#6784#6892#0" expanded="true" />
               </folding>
@@ -81,8 +84,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="486">
-                <caret line="115" selection-start-line="115" selection-end-line="115" />
+              <first_editor relative-caret-position="264">
+                <caret line="53" selection-start-line="53" selection-end-line="53" />
                 <folding>
                   <element signature="e#127#272#0" expanded="true" />
                   <element signature="e#71#352#0" expanded="true" />
@@ -377,9 +380,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        <state>
+          <caret line="171" column="16" selection-start-line="171" selection-start-column="16" selection-end-line="171" selection-end-column="16" />
           <folding>
+            <element signature="e#291#1816#0" expanded="true" />
+            <element signature="e#381#670#0" expanded="true" />
             <element signature="e#707#781#0" expanded="true" />
             <element signature="e#826#900#0" expanded="true" />
             <element signature="e#1160#1314#0" expanded="true" />
@@ -391,6 +396,7 @@
             <element signature="e#5249#5329#0" expanded="true" />
             <element signature="n#!!block;n#sample#0;n#TrafficSimulator#0" expanded="true" />
             <element signature="n#!!block;n#randURL#0;n#TrafficSimulator#0" expanded="true" />
+            <element signature="n#!!block;n#simulate#0;n#TrafficSimulator#0" expanded="true" />
             <element signature="e#6762#7027#0" expanded="true" />
             <element signature="e#6784#6892#0" expanded="true" />
           </folding>
@@ -432,8 +438,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="486">
-            <caret line="115" selection-start-line="115" selection-end-line="115" />
+          <first_editor relative-caret-position="264">
+            <caret line="53" selection-start-line="53" selection-end-line="53" />
             <folding>
               <element signature="e#127#272#0" expanded="true" />
               <element signature="e#71#352#0" expanded="true" />
