@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf923392-dfe5-4466-9c2d-09b6b5014f07" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -15,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="46" selection-start-line="46" selection-end-line="46" />
+            <state relative-caret-position="308">
+              <caret line="126" column="12" selection-start-line="126" selection-start-column="12" selection-end-line="126" selection-end-column="12" />
               <folding>
                 <element signature="e#291#1816#0" expanded="true" />
                 <element signature="e#381#670#0" expanded="true" />
@@ -30,7 +30,6 @@
                 <element signature="e#1525#1685#0" expanded="true" />
                 <element signature="e#1746#1813#0" expanded="true" />
                 <element signature="n#!!block;n#constructor#0;n#TrafficSimulator#0" expanded="true" />
-                <element signature="n#!!block;n#clientWorker#0;n#TrafficSimulator#0" expanded="true" />
                 <element signature="e#5249#5329#0" expanded="true" />
                 <element signature="n#!!block;n#sample#0;n#TrafficSimulator#0" expanded="true" />
                 <element signature="n#!!block;n#randURL#0;n#TrafficSimulator#0" expanded="true" />
@@ -44,8 +43,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+            <state relative-caret-position="42">
+              <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -53,15 +52,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/examples/simple.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="32" column="4" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
+            <state relative-caret-position="301">
+              <caret line="34" column="1" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
               <folding>
+                <element signature="e#138#1663#0" expanded="true" />
                 <element signature="e#228#517#0" expanded="true" />
                 <element signature="e#554#628#0" expanded="true" />
                 <element signature="e#673#747#0" expanded="true" />
                 <element signature="e#1007#1161#0" expanded="true" />
                 <element signature="e#1188#1310#0" expanded="true" />
                 <element signature="e#1372#1532#0" expanded="true" />
+                <element signature="e#1593#1660#0" expanded="true" />
                 <element signature="e#1679#1766#0" expanded="true" />
               </folding>
             </state>
@@ -71,21 +72,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tsconfig.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            <state relative-caret-position="490">
+              <caret line="37" selection-start-line="37" selection-end-line="37" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor>
+              <first_editor relative-caret-position="486">
+                <caret line="107" selection-start-line="107" selection-end-line="107" />
                 <folding>
                   <element signature="e#127#272#0" expanded="true" />
                   <element signature="e#71#352#0" expanded="true" />
                   <element signature="e#92#1617#0" expanded="true" />
+                  <element signature="e#182#471#0" expanded="true" />
+                  <element signature="e#508#582#0" expanded="true" />
+                  <element signature="e#627#701#0" expanded="true" />
+                  <element signature="e#961#1115#0" expanded="true" />
+                  <element signature="e#1142#1264#0" expanded="true" />
+                  <element signature="e#1326#1486#0" expanded="true" />
+                  <element signature="e#1547#1614#0" expanded="true" />
                 </folding>
               </first_editor>
               <second_editor />
@@ -96,8 +105,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="45" column="10" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
+            <state relative-caret-position="350">
+              <caret line="49" column="22" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -122,8 +131,8 @@
         <option value="$PROJECT_DIR$/tsconfig.json" />
         <option value="$PROJECT_DIR$/index.ts" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -355,17 +364,71 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/simple.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="34" column="1" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
+          <folding>
+            <element signature="e#138#1663#0" expanded="true" />
+            <element signature="e#228#517#0" expanded="true" />
+            <element signature="e#554#628#0" expanded="true" />
+            <element signature="e#673#747#0" expanded="true" />
+            <element signature="e#1007#1161#0" expanded="true" />
+            <element signature="e#1188#1310#0" expanded="true" />
+            <element signature="e#1372#1532#0" expanded="true" />
+            <element signature="e#1593#1660#0" expanded="true" />
+            <element signature="e#1679#1766#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsconfig.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="486">
+            <caret line="107" selection-start-line="107" selection-end-line="107" />
+            <folding>
+              <element signature="e#127#272#0" expanded="true" />
+              <element signature="e#71#352#0" expanded="true" />
+              <element signature="e#92#1617#0" expanded="true" />
+              <element signature="e#182#471#0" expanded="true" />
+              <element signature="e#508#582#0" expanded="true" />
+              <element signature="e#627#701#0" expanded="true" />
+              <element signature="e#961#1115#0" expanded="true" />
+              <element signature="e#1142#1264#0" expanded="true" />
+              <element signature="e#1326#1486#0" expanded="true" />
+              <element signature="e#1547#1614#0" expanded="true" />
+            </folding>
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="45" column="10" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
+        <state relative-caret-position="350">
+          <caret line="49" column="22" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        <state relative-caret-position="308">
+          <caret line="126" column="12" selection-start-line="126" selection-start-column="12" selection-end-line="126" selection-end-column="12" />
           <folding>
             <element signature="e#291#1816#0" expanded="true" />
             <element signature="e#381#670#0" expanded="true" />
@@ -376,57 +439,12 @@
             <element signature="e#1525#1685#0" expanded="true" />
             <element signature="e#1746#1813#0" expanded="true" />
             <element signature="n#!!block;n#constructor#0;n#TrafficSimulator#0" expanded="true" />
-            <element signature="n#!!block;n#clientWorker#0;n#TrafficSimulator#0" expanded="true" />
             <element signature="e#5249#5329#0" expanded="true" />
             <element signature="n#!!block;n#sample#0;n#TrafficSimulator#0" expanded="true" />
             <element signature="n#!!block;n#randURL#0;n#TrafficSimulator#0" expanded="true" />
             <element signature="e#6762#7027#0" expanded="true" />
             <element signature="e#6784#6892#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/simple.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="32" column="4" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
-          <folding>
-            <element signature="e#228#517#0" expanded="true" />
-            <element signature="e#554#628#0" expanded="true" />
-            <element signature="e#673#747#0" expanded="true" />
-            <element signature="e#1007#1161#0" expanded="true" />
-            <element signature="e#1188#1310#0" expanded="true" />
-            <element signature="e#1372#1532#0" expanded="true" />
-            <element signature="e#1679#1766#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsconfig.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor>
-            <folding>
-              <element signature="e#127#272#0" expanded="true" />
-              <element signature="e#71#352#0" expanded="true" />
-              <element signature="e#92#1617#0" expanded="true" />
-            </folding>
-          </first_editor>
-          <second_editor />
         </state>
       </provider>
     </entry>

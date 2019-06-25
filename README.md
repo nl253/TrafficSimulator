@@ -12,13 +12,13 @@ const { TrafficSimulator, SECOND } = require('traffic-simulator');
 const graph = { /* see below */ };
 
 const opts = {
-  delayRate: 1 * SECOND,
-  minDepth: 2,
-  maxDepth: 20,
-  minTmOnPage: 1 * SECOND,
+  delayRate:    1 * SECOND,
+  minDepth:              2,
+  maxDepth:             20,
+  minTmOnPage:  1 * SECOND,
   maxTmOnPage: 30 * SECOND,
-  nClients: 50,
-  doLog: true,
+  nClients:             50,
+  doLog:              true,
 };
 
 const ts = new TrafficSimulator(graph, opts);
@@ -47,12 +47,13 @@ const DEFAULTS = {
 ```typescript
 interface Printable { toString(): string; }
 
-protected get randURL(): string;
-protected get randDepth(): number;
+protected get randURL():    string;
+protected get randDepth():  number;
 protected get randTmOnPg(): number;
+
 protected nameFunct(idx: number): string;
-protected warn(msg: Printable): void;
-protected log(msg: Printable): void;
+protected warn(msg: Printable):   void;
+protected log(msg: Printable):    void;
 ```
 
 ### EventEmitter API
