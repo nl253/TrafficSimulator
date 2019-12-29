@@ -2,7 +2,7 @@
   "author": "Norbert Logiewa <norbertlogiewa96@gmail.com>",
   "readme": "README.md",
   "bugs": {
-    "url": "https://github.com/nl253/TrafficSimulator-JS/issues",
+    "url": "https://github.com/nl253/TrafficSimulator/issues",
     "email": "norbertlogiewa96@gmail.com"
   },
   "dependencies": {
@@ -37,17 +37,17 @@
   "main": "index.js",
   "name": "traffic-simulator",
   "private": false,
-  "homepage": "https://github.com/nl253/TrafficSimulator-JS",
+  "homepage": "https://github.com/nl253/TrafficSimulator",
   "repository": {
-    "url": "https://github.com/nl253/TrafficSimulator-JS",
+    "url": "https://github.com/nl253/TrafficSimulator",
     "type": "git"
   },
   "engines": {
     "node": ">=10.15.1"
   },
   "files": [
-    "index.js",
-    "examples/simple.ts",
+    "*.js",
+    "examples/*.ts",
     "README.md"
   ],
   "scripts": {
