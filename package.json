@@ -23,7 +23,7 @@
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-security": "^1.4.0",
-    "typescript": "^3.5.2"
+    "typescript": "^3.7.5"
   },
   "description": "Test your HTTP server by generating mock traffic",
   "keywords": [
