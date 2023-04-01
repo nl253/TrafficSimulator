@@ -1,9 +1,9 @@
 {
-  "author": "Norbert Logiewa <norbertlogiewa96@gmail.com>",
+  "author": "MX <github.qxlbr@dralias.com>",
   "readme": "README.md",
   "bugs": {
     "url": "https://github.com/nl253/TrafficSimulator/issues",
-    "email": "norbertlogiewa96@gmail.com"
+    "email": "github.qxlbr@dralias.com"
   },
   "dependencies": {
     "node-fetch": "^2.4.1"
