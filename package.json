@@ -11,7 +11,7 @@
   "devDependencies": {
     "@types/node": "^12.0.8",
     "@types/node-fetch": "*",
-    "ts-node": "^8.3.0",
+    "ts-node": "^8.6.2",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-compat": "^3.1.1",
